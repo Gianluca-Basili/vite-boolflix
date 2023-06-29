@@ -1,13 +1,15 @@
 <script>
 import appHeader from './components/appHeader.vue';
-import appCharacterList from './components/appCharacterList.vue';
+import appmain from './components/appmain.vue';
+import appSearchBar from './components/appSearchBar.vue';
 import { store } from './store';
 import axios from 'axios'
 
 export default {
   components:{
     appHeader,
-    appCharacterList
+    appmain,
+    appSearchBar
   },
   data() {
         return {
@@ -16,18 +18,32 @@ export default {
         }
     },
     mounted(){
-        axios.get(store.apiUrl).then((response) =>{
+        this.searchMovies()
+    },
+    methods:{
+      searchMovies(){
+        let myUrl = store.apiUrl;
+       
+        if(store.searchText !==''){
+          store.apiBaseMovie
+        }
+        axios.get(myUrl).then((response) =>{
             store.CharactersList = response.data.results;
         })
+      
+      }
     }
 }
 </script>
 <template lang="">
   <div>
-    <appHeader title="BOOLFIX" />
-    <appCharacterList />
+    <appHeader title="BOOLFIX"/>
+    <appSearchBar @search="searchMovies" />
+    <appmain />
   </div>
 </template>
 <style lang="scss">
   @use './styles/generals.scss' as *;
 </style>
+
+      

@@ -12,10 +12,16 @@ export default {
 }
 </script>
 <template lang="">
-    <div>
-      <img :src=store.CharactersList.backdrop_path alt=""> 
+    <div class="my-5">
+        <div class="container-img">
+            <img :src="store.apiBaseMovie+myCharacter.poster_path" alt=""> 
+
+        </div>
+      
     </div>
 </template>
 <style lang="scss" scoped>
-    
+
+
+ 
 </style>
